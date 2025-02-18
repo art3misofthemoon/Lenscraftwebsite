@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <style>
+            body{
+                background: url(pastel.jpg) no-repeat;
+                background-position: center;
+                background-size: cover;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            .container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+            }
+
+            .form-box{
+                position: relative;
+                width: 400px;
+                height: 550px;
+                border: 2px solid rgba(255, 255, 2550.5);
+                border-radius: 20px;
+                backdrop-filter: blur(15px);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .form-box h2{
+                color: #fff;
+                text-align: center;
+                font-size: 32px;
+            }
+
+            .form-box .input-box {
+                position: relative;
+                margin: 30px 0;
+                width: 310px;
+                border-bottom: 2px solid  #fff;
+            }
+
+            .form-box .input-box input {
+                width: 100%;
+                height: 45px;
+                background: transparent;
+                border: none;
+                outline: none;
+                padding: 0 20px 0 5px;
+                color: #fff;
+                font-size: 16px;
+            }
+
+            i {
+                position: absolute;
+                color: #fff;
+                top: 13px;
+                right: 0;
+            }
+
+            input::placeholder{
+                color: #fff;
+            }
+
+            .btn {
+                color: #fff;
+                background: #FFC1CC;
+                width: 100%;
+                height: 50px;
+                border-radius: 5px;
+                outline: none;
+                border: none;
+                font-size: 17px;
+                cursor: pointer;
+                box-shadow: 3px 0 10px rgba(0, 0, 0, 0.5);
+            }
+
+            .group {
+                display: flex;
+                justify-content: flex-end;
+                margin-top: 20px;
+            }
+
+            .group span a {
+                color: #fff;
+                position: relative;
+                top: 10px;
+                text-decoration: none;
+                font-weight: 500;
+            }
+
+            .group a:focus{
+                text-decoration: underline;
+            }
+
+            .register-text {
+                color: #fff;
+                margin-top: 10px;
+                margin-right: 10px;
+            }
+
+            #result{
+                color: red;
+                font-weight: 600;
+                position: relative;
+                top: 25px;
+            }
+
+            .popup {
+                width: 400px;
+                background-color: #fff;
+                border-radius: 6px;
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(1);
+                transition: transform 0.4s, top 0.4s;
+                visibility: hidden;
+                text-align: center;
+                padding: 0 30px 30px;
+                height: 330px;
+                color: #000;
+            }
+
+            .popup ion-icon {
+                color: #c695fa;
+                font-size: 50px;
+            }
+
+            .popup button {
+                width: 100%;
+                background: #c695fa;
+                padding: 10px 0;
+                margin-top: 50px;
+                border: none;
+                outline: none;
+                font-size: 18px;
+                color: #fff;
+                border-radius: 4px;
+                cursor: pointer;
+                box-shadow:0 0 0 2px rgba(0, 0, 0, 0.1)
+            }
+
+            .popup a{
+                color: #fff;
+                text-decoration: none;
+                font-weight: 600;
+                letter-spacing: 2px;
+            }
+
+            .open-slide{
+                top: 50%;
+                transform: translate(-50%, -50%) scale(1);
+                visibility: visible;
+            }
+
+            .popup h2 {
+                font-weight: 500;
+                font-size: 38px;
+                margin: 30px 0 10px;
+            }
+        </style>
+    <body>
+    <div class="container">
+        <div class="form-box">
+            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" name="Formfill" onsubmit="return validation(event)">
+                <p id="result"></p>
+                <div class="input-box">
+                    <i class='bx bx-envelope'></i>
+                    <input type="email" name="Email" placeholder="Email">
+                </div>
+                <div class="input-box">
+                    <i class='bx bxs-lock-alt'></i>
+                    <input type="password" name="Password" placeholder="Password">
+                </div>
+                <div class="button">
+                    <input type="submit" class="btn" value="Login"> <br>
+                </div>
+                <div class="group">
+                    <span class="register-text">Don't have an account?</span>
+                    <span><a href="cust_registration.html">Register</a></span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        function validation(event) {
+            event.preventDefault();
+            console.log("Validation function called.");
+            
+            var email = document.Formfill.Email.value;
+            var password = document.Formfill.Password.value;
+
+            if (email === "") {
+                document.getElementById("result").innerHTML = "Enter Email*";
+                return false;
+            } else if (password === "") {
+                document.getElementById("result").innerHTML = "Enter your password*";
+                return false;
+            } else if (password.length < 6) {
+                document.getElementById("result").innerHTML = "Password must be at least 6 characters*";
+                return false;
+            } else {
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "cust_login.php", true);
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        if (xhr.responseText.trim() === "success") {
+                            alert("Login successful!");
+                            window.location.href = "homepage.html";
+                        } else {
+                            document.getElementById("result").innerHTML = "Invalid email or password. Please try again.";
+                        }
+                    }
+                };
+                xhr.send("Email=" + email + "&Password=" + password);
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

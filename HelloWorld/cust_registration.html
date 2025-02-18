@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url(pastel.jpg) no-repeat;
+            background-position: center;
+            background-size: cover;
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+
+        .form-container {
+            width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 20px; 
+        }
+
+        .form-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-box h2 {
+            color: #333;
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .form-box .input-box {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .form-box .input-box input {
+            width: calc(100% - 25px); /* Adjusted width to fit into container */
+            height: 45px;
+            background: transparent; /* Transparent background */
+            border: none;
+            outline: none;
+            color: #000;
+            font-size: 16px;
+            border-bottom: 1px solid #fff; /* Underline effect */
+            padding: 0 10px;
+            border-radius: 0;
+        }
+
+        .form-box .input-box input:focus {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        form {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        input[type="submit"],
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #c6b5e3;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover,
+        button:hover {
+            background-color: #858ae3;
+        }
+
+        button[type="submit"] {
+            background-color: #FFA2B9;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #FE6E94;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+
+            if (password != confirmPassword) {
+                alert("Passwords do not match");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-box">
+            <h2>Registration Form</h2>
+            <form action="insert_register.php" method="post" onsubmit="return validateForm()">
+                <div class="input-box">
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" id="username" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" required>
+                </div>
+
+                <div class="input-box">
+                    <label for="confirmPassword">Confirm Password:</label>
+                    <input type="password" name="confirmPassword" id="confirmPassword" required>
+                </div>
+
+                <input type="submit" value="Register">
+            </form>
+            <form action="read_user.html" method="get">
+                <button type="submit">Read</button>
+            </form>
+            <form action="update_user.html" method="get">
+                <button type="submit">Update</button>
+            </form>
+            <form action="delete_user.html" method="get">
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
