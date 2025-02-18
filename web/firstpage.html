@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+        <style>
+            h1 {
+                font-family: "Pacifico", cursive;
+                font-weight: 400;
+                font-style: normal;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-image: url(pastel.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+            }
+
+            .container {
+                position: relative;
+                width: 80%;
+                max-width: 400px;
+                height: auto;
+                padding: 20px;
+                border-radius: 10px;
+                background-color: rgba(255, 255, 255, 0.8);
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                backdrop-filter: blur(5px);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .radio {
+                margin: 0.5rem;
+            }
+
+            .radio input[type="radio"] {
+            }
+
+            .radio input[type="radio"] + .radio-label:before {
+                content: '';
+                background: #f4f4f4;
+                border-radius: 100%;
+                border: 1px solid darken(#f4f4f4, 25%);
+                display: inline-block;
+                width: 1.4em;
+                height: 1.4em;
+                position: relative;
+                top: -0.2em;
+                margin-right: 1em;
+                vertical-align: top;
+                cursor: pointer;
+                text-align: center;
+                transition: all 250ms ease;
+            }
+
+            .radio input[type="radio"]:checked + .radio-label:before {
+                background-color: #FDADC2;
+                box-shadow: inset 0 0 0 4px #f4f4f4;
+            }
+
+            .radio input[type="radio"]:focus + .radio-label:before {
+                outline: none;
+                border-color: #FDADC2;
+            }
+
+            .radio input[type="radio"]:disabled + .radio-label:before {
+                box-shadow: inset 0 0 0 4px #f4f4f4;
+                border-color: darken(#f4f4f4, 25%);
+                background: darken(#f4f4f4, 25%);
+            }
+
+            .radio input[type="radio"] + .radio-label:empty:before {
+                margin-right: 0;
+            }
+
+            .btn {
+                background-color: #FDADC2;
+                color: #fff;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .btn:hover {
+                background-color: #FF8C9E;
+            }
+
+
+        </style>
+        <script>
+            function redirectToLoginPage() {
+                var role = document.querySelector('input[name="role"]:checked');
+                if (role) {
+                    if (role.value === "admin") {
+                        window.location.href = "admin_login.html";
+                    } else if (role.value === "customer") {
+                        window.location.href = "http://localhost/HelloWorld/cust_login.html";
+                    }
+                } else {
+                    alert("Please select a role.");
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Welcome to LensCraft!</h1><br>
+            <h2>Are you an Admin or a Customer?</h2>
+                <form>
+                    <div class="radio">
+                    <input type="radio" name="role" value="admin"> Admin<br>
+                    <input type="radio" name="role" value="customer"> Customer<br><br>
+                    </div>
+                    <input type="button" value="Submit" onclick="redirectToLoginPage()" class="btn">
+                </form>
+        </div>
+    </body>
+</html>

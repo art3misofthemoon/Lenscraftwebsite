@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url(pastel.jpg);
+            background-size: cover;
+        }
+
+        .container {
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 36px;
+        }
+
+        nav {
+            margin-top: 20px;
+        }
+
+        nav a {
+            color: #007bff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Carousel styles */
+        .carousel-container {
+            width: 80%;
+            margin: 50px auto;
+            overflow: hidden;
+            margin-top: 200px;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 1s ease-in-out;
+        }
+
+        .card {
+            width: 300px;
+            margin: 0 10px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Manage Details</h1>
+        <nav>
+            <a href="insert.html">Insert lens into database</a>
+            <a href="SessionServlet">Session Tracking</a>
+            <a href="offer.html">Upload Offers</a>
+        </nav>
+    </div>
+    <div class="carousel-container">
+        <div class="carousel">
+            <div class="card">
+                <img src="img1.jpg" alt="Image 1">
+            </div>
+            <div class="card">
+                <img src="img2.jpg" alt="Image 2">
+            </div>
+            <div class="card">
+                <img src="img3.jpg" alt="Image 3">
+            </div>
+            <div class="card">
+                <img src="img4.jpg" alt="Image 4">
+            </div>
+            <div class="card">
+                <img src="img5.jpg" alt="Image 5">
+            </div>
+            <div class="card">
+                <img src="img6.jpg" alt="Image 6">
+            </div>
+        </div>
+    </div>
+      <script>
+        // JavaScript for automatic sliding
+        const carousel = document.querySelector('.carousel');
+        const cards = document.querySelectorAll('.card');
+        const totalCards = cards.length;
+        let counter = 0; // Set counter to 0 initially
+
+        setInterval(() => {
+            const currentTranslate = -counter * cards[0].offsetWidth;
+            carousel.style.transition = 'transform 1s ease-in-out'; // Add transition effect
+            carousel.style.transform = `translateX(${currentTranslate}px)`;
+            counter++;
+            if (counter === totalCards) {
+                setTimeout(() => {
+                    carousel.style.transition = 'none'; // Remove transition
+                    carousel.style.transform = `translateX(0)`; // Reset transform
+                    counter = 0; // Reset counter
+                }, 1000); // Wait for transition to complete before resetting
+            }
+        }, 3000);
+    </script>
+</body>
+</html>

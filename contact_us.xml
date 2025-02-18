@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<contact_us>
+    <address>
+        <street>123 Main Street</street>
+        <city>Cityville</city>
+        <state>Stateville</state>
+        <postal_code>12345</postal_code>
+    </address>
+    <phone_numbers>
+        <office>123-456-7890</office>
+        <fax>123-456-7891</fax>
+    </phone_numbers>
+    <email>info@example.com</email>
+</contact_us>
+
+<root>
+    
+</root>
+

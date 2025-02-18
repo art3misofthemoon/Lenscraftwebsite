@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+</head>
+<body>
+    <h1>Contact Us</h1>
+    <div id="contact-info">
+        <!-- Contact information will be inserted here -->
+    </div>
+
+    <script>
+        // Function to load XML file and display contact information
+        function loadXML() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    displayContactInfo(this);
+                }
+            };
+            xhttp.open("GET", "contact_us.xml", true);
+            xhttp.send();
+        }
+
+        // Function to display contact information
+        function displayContactInfo(xml) {
+            var xmlDoc = xml.responseXML;
+            var address = xmlDoc.getElementsByTagName("address")[0];
+            var phoneNumbers = xmlDoc.getElementsByTagName("phone_numbers")[0];
+            var email = xmlDoc.getElementsByTagName("email")[0];
+
+            var contactInfo = "<p><strong>Address:</strong> " +
+                address.getElementsByTagName("street")[0].childNodes[0].nodeValue + ", " +
+                address.getElementsByTagName("city")[0].childNodes[0].nodeValue + ", " +
+                address.getElementsByTagName("state")[0].childNodes[0].nodeValue + ", " +
+                address.getElementsByTagName("postal_code")[0].childNodes[0].nodeValue + "</p>";
+
+            contactInfo += "<p><strong>Phone:</strong> " +
+                phoneNumbers.getElementsByTagName("office")[0].childNodes[0].nodeValue + "</p>";
+
+            contactInfo += "<p><strong>Fax:</strong> " +
+                phoneNumbers.getElementsByTagName("fax")[0].childNodes[0].nodeValue + "</p>";
+
+            contactInfo += "<p><strong>Email:</strong> " +
+                email.childNodes[0].nodeValue + "</p>";
+
+            document.getElementById("contact-info").innerHTML = contactInfo;
+        }
+
+        loadXML();
+    </script>
+</body>
+</html>

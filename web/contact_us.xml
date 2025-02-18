@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<contact_us>
+    <address>
+        <street>221B Baker Street</street>
+        <city>The Shire</city>
+        <state>London</state>
+        <postal_code>600020</postal_code>
+    </address>
+    <phone_numbers>
+        <office>978-906-7898</office>
+        <fax>892-110-2645</fax>
+    </phone_numbers>
+    <email>lenscraft@gmail.com</email>
+</contact_us>
